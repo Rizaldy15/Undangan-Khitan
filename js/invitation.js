@@ -28,12 +28,17 @@
 
   function getGuestName() {
     var params = new URLSearchParams(window.location.search);
-    return (params.get('to') || params.get('kepada') || '').trim();
+    var name = params.get('nama') || params.get('to') || params.get('kepada') || '';
+    return name.trim().replace(/\s+/g, ' ').slice(0, 100);
   }
 
   var guestName = getGuestName();
   if (guestName) {
     document.getElementById('guest-name').textContent = guestName;
+    document.querySelectorAll('[data-guest-name]').forEach(function (element) {
+      element.textContent = guestName;
+    });
+    document.title = 'Undangan untuk ' + guestName + ' — Tasyakuran Khitan Thifal & Zafran';
     var rsvpName = document.querySelector('#rsvp-form input[name="name"]');
     if (rsvpName) rsvpName.value = guestName;
   }

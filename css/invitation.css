@@ -109,6 +109,7 @@ h1, h2, h3 { font-family: var(--serif); line-height: .98; }
 .section-kicker span { width: 38px; height: 1px; background: var(--gold); }
 .welcome h2 { margin-bottom: 28px; font-size: clamp(2.7rem, 5vw, 4.8rem); }
 .welcome__inner > p:not(.arabic-title) { max-width: 680px; margin: 0 auto 34px; color: var(--muted); font-size: clamp(.94rem, 1.6vw, 1.05rem); }
+.personal-guest { color: var(--emerald-800); font-weight: 700; }
 .signature { display: grid; gap: 5px; }
 .signature span { color: var(--muted); font-size: .75rem; }
 .signature strong { font-family: var(--serif); font-size: 1.3rem; }
