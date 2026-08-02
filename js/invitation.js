@@ -100,23 +100,18 @@
 
   document.getElementById('add-calendar').addEventListener('click', function () {
     var calendar = [
-      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Walimatul Khitan//ID',
-      'BEGIN:VEVENT', 'UID:walimatul-khitan-thifal-zafran-2026',
-      'DTSTAMP:20260802T090000Z', 'DTSTART;TZID=Asia/Jakarta:20261225T060000',
-      'DTEND;TZID=Asia/Jakarta:20261225T220000', 'SUMMARY:Walimatul Khitan Thifal & Zafran',
-      'LOCATION:Kampung Bojong, Desa Sepatnunggal, Sodonghilir, Tasikmalaya',
-      'DESCRIPTION:Walimatul Khitan keluarga Bapak Mimin Muhaemin.',
-      'END:VEVENT', 'BEGIN:VEVENT', 'UID:tabligh-akbar-thifal-zafran-2026',
-      'DTSTAMP:20260802T090000Z', 'DTSTART;TZID=Asia/Jakarta:20261205T193000',
-      'DTEND;TZID=Asia/Jakarta:20261205T223000', 'SUMMARY:Tabligh Akbar — Walimatul Khitan',
-      'LOCATION:Kampung Bojong, Desa Sepatnunggal, Sodonghilir, Tasikmalaya',
-      'DESCRIPTION:Tabligh Akbar dalam rangka Walimatul Khitan Thifal dan Zafran.',
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Tasyakuran Khitan//ID',
+      'BEGIN:VEVENT', 'UID:tasyakuran-khitan-thifal-zafran-2026',
+      'DTSTAMP:20260802T090000Z', 'DTSTART;TZID=Asia/Jakarta:20261225T110000',
+      'DTEND;TZID=Asia/Jakarta:20261225T140000', 'SUMMARY:Tasyakuran Khitan Thifal & Zafran',
+      'LOCATION:Jl. Tawes II No. 262, Kayuringin Jaya, Bekasi Selatan, Kota Bekasi',
+      'DESCRIPTION:Tasyakuran Khitan Thifal dan Zafran.',
       'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');
     var blob = new Blob([calendar], { type: 'text/calendar;charset=utf-8' });
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'walimatul-khitan-thifal-zafran.ics';
+    link.download = 'tasyakuran-khitan-thifal-zafran.ics';
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -125,7 +120,7 @@
 
   var copyButton = document.getElementById('copy-address');
   copyButton.addEventListener('click', function () {
-    var address = 'Kampung Bojong, Desa Sepatnunggal, Kecamatan Sodonghilir, Kabupaten Tasikmalaya';
+    var address = 'Jl. Tawes II No. 262, Kayuringin Jaya, Bekasi Selatan, Kota Bekasi';
     copyText(address).then(function () {
       copyButton.textContent = 'Alamat tersalin ✓';
       window.setTimeout(function () { copyButton.textContent = 'Salin alamat'; }, 2200);
@@ -186,7 +181,7 @@
       'Assalamu’alaikum, saya ' + data.get('name') + '.',
       'Konfirmasi kehadiran: ' + data.get('attendance') + '.',
       data.get('message') ? 'Ucapan/doa: ' + data.get('message') : '',
-      'Untuk Walimatul Khitan Thifal & Zafran, 25 Desember 2026.'
+      'Untuk Tasyakuran Khitan Thifal & Zafran, 25 Desember 2026 pukul 11.00–14.00 WIB.'
     ].filter(Boolean).join('\n');
 
     var share = function () {
