@@ -189,30 +189,44 @@
   rsvpForm.addEventListener('submit', function (event) {
     event.preventDefault();
     var data = new FormData(rsvpForm);
-    var message = [
-      'Assalamu’alaikum, saya ' + data.get('name') + '.',
-      'Konfirmasi kehadiran: ' + data.get('attendance') + '.',
-      data.get('message') ? 'Ucapan/doa: ' + data.get('message') : '',
-      'Untuk Tasyakuran Khitan Thifal & Zafran, 25 Desember 2026 pukul 11.00–14.00 WIB.'
-    ].filter(Boolean).join('\n');
-
-    var share = function () {
-      if (navigator.share) {
-        return navigator.share({ title: 'Konfirmasi Kehadiran', text: message }).then(function () {
-          return 'Konfirmasi siap dan berhasil dibagikan. Terima kasih.';
-        });
-      }
-      return copyText(message).then(function () {
-        return 'Konfirmasi telah disalin. Silakan kirimkan kepada keluarga.';
-      });
+    var submitButton = rsvpForm.querySelector('button[type="submit"]');
+    var endpoint = window.RSVP_GOOGLE_SCRIPT_URL || '';
+    var payload = {
+      invitedGuest: guestName || 'Tamu umum',
+      name: String(data.get('name') || '').trim(),
+      attendance: String(data.get('attendance') || ''),
+      message: String(data.get('message') || '').trim(),
+      website: String(data.get('website') || ''),
+      pageUrl: window.location.href.slice(0, 500)
     };
 
-    share().then(function (text) {
-      formResult.textContent = text;
+    if (!endpoint || endpoint.indexOf('script.google.com/macros/s/') === -1) {
+      formResult.textContent = 'Google Sheets belum dihubungkan. Masukkan URL Apps Script pada js/config.js.';
       formResult.classList.add('is-visible');
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Mengirim...';
+    formResult.classList.remove('is-visible');
+
+    fetch(endpoint, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).then(function () {
+      formResult.textContent = 'Reservasi berhasil dikirim. Terima kasih atas konfirmasinya.';
+      formResult.classList.add('is-visible');
+      rsvpForm.reset();
+      var rsvpName = rsvpForm.querySelector('input[name="name"]');
+      if (guestName && rsvpName) rsvpName.value = guestName;
     }).catch(function () {
-      formResult.textContent = 'Konfirmasi sudah siap. Silakan salin: ' + message;
+      formResult.textContent = 'Reservasi belum berhasil dikirim. Periksa koneksi lalu coba kembali.';
       formResult.classList.add('is-visible');
+    }).then(function () {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Kirim Reservasi';
     });
   });
 }());

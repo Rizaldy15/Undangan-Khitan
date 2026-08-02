@@ -179,14 +179,17 @@
           <h2>Sampai Jumpa<br>di Hari Bahagia</h2>
           <address>Jl. Tawes II No. 262, Kayuringin Jaya,<br>Bekasi Selatan, Kota Bekasi</address>
           <div class="location__actions">
-            <a class="button button--dark" href="https://www.google.com/maps/search/?api=1&query=Jl.+Tawes+II+No.+262+Kayuringin+Jaya+Bekasi+Selatan" target="_blank" rel="noopener">Buka Google Maps ↗</a>
+            <a class="button button--dark" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jl.+Tawes+II+No.+262,+Kayuringin+Jaya,+Bekasi+Selatan,+Kota+Bekasi&amp;travelmode=driving" target="_blank" rel="noopener">Petunjuk Arah ↗</a>
             <button class="copy-address" id="copy-address" type="button">Salin alamat</button>
           </div>
         </div>
-        <div class="location__visual" aria-hidden="true">
-          <div class="map-lines"></div>
-          <div class="map-pin"><span></span></div>
-          <p>Kayuringin Jaya<br><small>Bekasi Selatan · Kota Bekasi</small></p>
+        <div class="location__map">
+          <iframe
+            title="Google Maps lokasi Tasyakuran Khitan"
+            src="https://www.google.com/maps?q=Jl.+Tawes+II+No.+262,+Kayuringin+Jaya,+Bekasi+Selatan,+Kota+Bekasi&amp;z=16&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -207,8 +210,8 @@
         <button class="gallery__item gallery__item--wide" type="button" data-src="images/zafran.png" data-caption="Keceriaan Zafran">
           <img src="images/zafran.png" alt="Zafran bermain mobil-mobilan" loading="lazy"><span>Lihat foto</span>
         </button>
-        <button class="gallery__item" type="button" data-src="images/WhatsApp Image 2022-03-29 at 23.28.01 (1).jpeg" data-caption="Haflah Tilawatil Qur’an">
-          <img src="images/WhatsApp Image 2022-03-29 at 23.28.01 (1).jpeg" alt="Poster Haflah Tilawatil Qur’an" loading="lazy"><span>Lihat foto</span>
+        <button class="gallery__item" type="button" data-src="images/ss_thif.png" data-caption="Thifal">
+          <img src="images/ss_thif.png" alt="Thifal" loading="lazy"><span>Lihat foto</span>
         </button>
       </div>
     </section>
@@ -222,6 +225,7 @@
           <div class="rsvp__quote"><span>“</span><p>Semoga Allah menjadikannya anak yang saleh, berbakti kepada orang tua, dan bermanfaat bagi sesama.</p></div>
         </div>
         <form class="rsvp-form reveal reveal--delay" id="rsvp-form">
+          <label class="website-field" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
           <label>Nama lengkap<input type="text" name="name" autocomplete="name" placeholder="Tuliskan nama Anda" required></label>
           <fieldset>
             <legend>Konfirmasi kehadiran</legend>
@@ -231,8 +235,8 @@
             </div>
           </fieldset>
           <label>Ucapan & doa<textarea name="message" rows="4" placeholder="Tuliskan doa terbaik Anda"></textarea></label>
-          <button class="button button--gold" type="submit">Siapkan Konfirmasi</button>
-          <p class="form-note">Konfirmasi akan disiapkan agar dapat Anda bagikan kepada keluarga.</p>
+          <button class="button button--gold" type="submit">Kirim Reservasi</button>
+          <p class="form-note">Data kehadiran akan tersimpan langsung di daftar tamu keluarga.</p>
           <div class="form-result" id="form-result" role="status" aria-live="polite"></div>
         </form>
       </div>
@@ -271,6 +275,7 @@
     <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Foto berikutnya">›</button>
   </div>
 
+  <script src="js/config.js"></script>
   <script src="js/invitation.js"></script>
 </body>
 </html>
