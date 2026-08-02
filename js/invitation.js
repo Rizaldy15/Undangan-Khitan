@@ -7,6 +7,12 @@
   var header = document.getElementById('site-header');
   var toTop = document.getElementById('to-top');
 
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  window.addEventListener('pageshow', function () {
+    window.scrollTo(0, 0);
+  });
+
   function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
     return new Promise(function (resolve, reject) {
@@ -45,6 +51,7 @@
 
   body.classList.add('is-locked');
   openButton.addEventListener('click', function () {
+    window.scrollTo(0, 0);
     opening.classList.add('is-opened');
     body.classList.remove('is-locked');
     window.setTimeout(function () { opening.setAttribute('hidden', ''); }, 850);
